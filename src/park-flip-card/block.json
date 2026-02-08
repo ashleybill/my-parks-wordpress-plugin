@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "my-parks/park-flip-card",
+	"version": "0.1.0",
+	"title": "Park Flip Card",
+	"category": "my-park-blocks",
+	"icon": "id-alt",
+	"description": "Display park as a flip card with featured image and excerpt",
+	"example": {},
+	"supports": {
+		"html": false,
+		"spacing": {
+			"padding": true,
+			"margin": true
+		},
+		"__experimentalBorder": {
+			"radius": true
+		}
+	},
+	"usesContext": ["postId", "postType"],
+	"textdomain": "my-parks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

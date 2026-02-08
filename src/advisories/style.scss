@@ -1,0 +1,53 @@
+.wp-block-my-parks-advisories {
+	details, .accordion-item-no-content {
+		border: 1px solid currentColor;
+		border-radius: 4px;
+		margin-bottom: 8px;
+		overflow: hidden;
+	}
+
+	.accordion-item-no-content {
+		padding: 16px 20px;
+		font-weight: 600;
+		cursor: default;
+	}
+
+	details {
+		summary {
+			padding: 16px 20px;
+			cursor: pointer;
+			font-weight: 600;
+			transition: color 0.2s, background-color 0.2s;
+			list-style: none;
+			display: flex;
+			align-items: center;
+
+			&::-webkit-details-marker {
+				display: none;
+			}
+
+			&::before {
+				content: '▶';
+				margin-right: 12px;
+				transition: transform 0.2s;
+				font-size: 12px;
+			}
+		}
+
+		.accordion-content {
+			height: 0;
+			overflow: hidden;
+			transition: height 0.3s ease;
+		}
+
+		p {
+			padding: 16px 20px;
+			margin: 0;
+			line-height: 1.6;
+		}
+
+		&[open] summary::before {
+			transform: rotate(90deg);
+		}
+	}
+}

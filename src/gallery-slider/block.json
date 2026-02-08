@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "my-parks/gallery-slider",
+	"version": "0.1.0",
+	"title": "Gallery Slider",
+	"category": "my-park-blocks",
+	"icon": "images-alt2",
+	"description": "Display gallery images in a slider",
+	"example": {},
+	"attributes": {
+		"aspectRatio": {
+			"type": "string",
+			"default": "auto"
+		},
+		"autoplay": {
+			"type": "boolean",
+			"default": false
+		},
+		"autoplaySpeed": {
+			"type": "number",
+			"default": 5
+		}
+	},
+	"supports": {
+		"html": false,
+		"spacing": {
+			"padding": true,
+			"margin": true
+		},
+		"__experimentalBorder": {
+			"radius": true
+		}
+	},
+	"usesContext": ["postId"],
+	"textdomain": "my-parks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

@@ -1,0 +1,33 @@
+.park-search-filter {
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+
+	input[type="search"] {
+		flex: 1;
+		padding: 0.75rem 1rem;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		font-size: 0.9rem;
+
+		&:focus {
+			outline: none;
+			border-color: #0073aa;
+		}
+	}
+
+	button {
+		padding: 0.75rem 1.5rem;
+		border: none;
+		background: #0073aa;
+		color: #fff;
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: 0.9rem;
+		white-space: nowrap;
+
+		&:hover {
+			background: #005a87;
+		}
+	}
+}

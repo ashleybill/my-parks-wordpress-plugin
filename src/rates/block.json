@@ -1,0 +1,56 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "my-parks/rates",
+	"version": "0.1.0",
+	"title": "Rates",
+	"category": "my-park-blocks",
+	"icon": "money-alt",
+	"description": "Display park rates in an accordion format.",
+	"example": {},
+	"attributes": {
+		"summaryTextColor": {
+			"type": "string"
+		},
+		"summaryBackgroundColor": {
+			"type": "string"
+		},
+		"summaryHoverTextColor": {
+			"type": "string"
+		},
+		"summaryHoverBackgroundColor": {
+			"type": "string"
+		},
+		"contentTextColor": {
+			"type": "string"
+		},
+		"contentBackgroundColor": {
+			"type": "string"
+		},
+		"style": {
+			"type": "object"
+		}
+	},
+	"supports": {
+		"html": false,
+		"color": {
+			"background": true,
+			"text": true
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true
+		},
+		"spacing": {
+			"padding": true,
+			"margin": true
+		}
+	},
+	"usesContext": ["postId"],
+	"textdomain": "my-parks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

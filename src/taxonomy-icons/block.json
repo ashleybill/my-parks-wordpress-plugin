@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "my-parks/taxonomy-icons",
+	"version": "0.1.0",
+	"title": "Taxonomy Icons",
+	"category": "my-park-blocks",
+	"icon": "grid-view",
+	"description": "Display taxonomy icons in a responsive grid",
+	"example": {},
+	"attributes": {
+		"taxonomy": {
+			"type": "string",
+			"default": "activity"
+		},
+		"maxPerRow": {
+			"type": "number",
+			"default": 6
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"usesContext": ["postId"],
+	"textdomain": "my-parks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

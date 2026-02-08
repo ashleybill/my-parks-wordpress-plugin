@@ -1,0 +1,38 @@
+.wp-block-my-parks-advisories {
+	details {
+		border: 1px solid currentColor;
+		border-radius: 4px;
+		overflow: hidden;
+
+		summary {
+			padding: 16px 20px;
+			cursor: pointer;
+			font-weight: 600;
+			list-style: none;
+			display: flex;
+			align-items: center;
+
+			&::-webkit-details-marker {
+				display: none;
+			}
+
+			&::before {
+				content: '▶';
+				margin-right: 12px;
+				font-size: 12px;
+			}
+		}
+
+		.accordion-content {
+			p {
+				padding: 16px 20px;
+				margin: 0;
+				line-height: 1.6;
+			}
+		}
+
+		&[open] summary::before {
+			transform: rotate(90deg);
+		}
+	}
+}

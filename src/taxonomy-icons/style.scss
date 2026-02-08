@@ -1,0 +1,44 @@
+.wp-block-my-parks-taxonomy-icons {
+	display: grid;
+	grid-template-columns: repeat(var(--max-per-row, 6), minmax(0, 32px));
+	gap: 0.75rem;
+}
+
+.taxonomy-icon-item {
+	position: relative;
+}
+
+.taxonomy-icon-item img {
+	width: 100%;
+	height: auto;
+	object-fit: contain;
+	aspect-ratio: 1;
+	display: block;
+}
+
+.taxonomy-icon-label {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	opacity: 0;
+	font-size: 0.75rem;
+	line-height: 1.2;
+	transition: opacity 0.2s;
+	white-space: nowrap;
+	margin-top: 0.25rem;
+	background: white;
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.25rem;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	z-index: 10;
+}
+
+.taxonomy-icon-item:hover .taxonomy-icon-label {
+	opacity: 1;
+}
+
+@media (min-width: 768px) {
+	.wp-block-my-parks-taxonomy-icons {
+		gap: 1rem;
+	}
+}

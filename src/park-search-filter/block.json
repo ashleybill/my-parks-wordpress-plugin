@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "my-parks/park-search-filter",
+	"version": "0.1.0",
+	"title": "Park Search Filter",
+	"category": "my-park-blocks",
+	"icon": "search",
+	"description": "Filter parks by search term",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "my-parks",
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}
