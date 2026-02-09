@@ -40,10 +40,11 @@
 			}
 
 			&::before {
-				content: '▶';
+				content: '+';
 				margin-right: 12px;
 				transition: transform 0.2s;
-				font-size: 12px;
+				font-size: 20px;
+				font-weight: 400;
 			}
 
 			.facility-name {
@@ -69,7 +70,8 @@
 		}
 
 		&[open] summary::before {
-			transform: rotate(90deg);
+			content: '-';
+			transform: none;
 		}
 	}
 }

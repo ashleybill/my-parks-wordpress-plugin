@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       My Parks
  * Description:       Manage Blocks for Park type posts
- * Version:           0.3.2
+ * Version:           0.3.3
  * Requires at least: 6.8
  * Requires PHP:      7.4
  * Author:            AJB
@@ -82,7 +82,11 @@ function my_parks_block_init() {
 		return;
 	}
 	wp_register_block_types_from_metadata_collection( __DIR__ . '/build', __DIR__ . '/build/blocks-manifest.php' );
-	wp_enqueue_style( 'my-parks-global', plugin_dir_url( __FILE__ ) . 'assets/style.css' );
+	
+	// Only enqueue global styles if file exists
+	if ( file_exists( __DIR__ . '/build/assets/style.css' ) ) {
+		wp_enqueue_style( 'my-parks-global', plugin_dir_url( __FILE__ ) . 'build/assets/style.css' );
+	}
 }
 add_action( 'init', 'my_parks_block_init' );
 

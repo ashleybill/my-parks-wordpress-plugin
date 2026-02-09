@@ -1,12 +1,13 @@
 {
 	"name": "my-parks",
-	"version": "0.3.2",
+	"version": "0.3.3",
 	"description": "Example block scaffolded with Create Block tool.",
 	"author": "The WordPress Contributors",
 	"license": "GPL-2.0-or-later",
 	"main": "build/index.js",
 	"scripts": {
-		"build": "wp-scripts build --blocks-manifest",
+		"build": "wp-scripts build --blocks-manifest && npm run copy-assets",
+		"copy-assets": "mkdir -p build/assets && cp -r assets/* build/assets/",
 		"format": "wp-scripts format",
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",

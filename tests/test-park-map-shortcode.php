@@ -44,7 +44,8 @@ class Test_Park_Map_Shortcode extends WP_UnitTestCase {
 		
 		$this->assertStringContainsString( 'https://maps.google.com/maps?q=40.7128,-74.006', $output );
 		$this->assertStringContainsString( 'target="_blank"', $output );
-		$this->assertStringContainsString( '📍 View on Map', $output );
+		$this->assertStringContainsString( '<svg', $output );
+		$this->assertStringContainsString( 'aria-label="View on Google Maps"', $output );
 		$this->assertStringContainsString( 'park-map-link', $output );
 		
 		wp_reset_postdata();
