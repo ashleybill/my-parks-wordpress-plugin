@@ -19,7 +19,18 @@ document.addEventListener('DOMContentLoaded', () => {
 		const searchTerm = searchInput.value.toLowerCase();
 		searchActive = !!searchTerm;
 		
+		// Clear filters when starting to search
+		if (searchActive && filtersActive) {
+			filtersActive = false;
+			// Trigger filter clear event to reset taxonomy filter UI
+			window.dispatchEvent(new CustomEvent('search-clearing-filters'));
+		}
+		
 		if (!searchActive) {
+			// Reset to initial state when search is cleared
+			currentlyShowing = itemsPerPage;
+			allCards.forEach(li => li.style.display = 'none');
+			allCards.slice(0, itemsPerPage).forEach(li => li.style.display = '');
 			noResults.style.display = 'none';
 			return;
 		}
@@ -50,6 +61,13 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 	
 	searchInput.addEventListener('input', updateDisplay);
+	
+	// Prevent form submission on Enter key
+	searchInput.closest('form').addEventListener('submit', (e) => {
+		e.preventDefault();
+		return false;
+	});
+	
 	window.addEventListener('scroll', loadMore);
 	
 	// Clear search when filters are applied

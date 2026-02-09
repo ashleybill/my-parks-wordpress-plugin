@@ -75,6 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	}
 	
+	// Listen for search clearing filters
+	window.addEventListener('search-clearing-filters', () => {
+		checkboxes.forEach(cb => cb.checked = false);
+		updateFilter();
+	});
+	
 	// Close on outside click
 	document.addEventListener('click', (e) => {
 		if (!filterBlock.contains(e.target)) {
