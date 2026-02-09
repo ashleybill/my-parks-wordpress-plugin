@@ -2,7 +2,7 @@
 Contributors:      The WordPress Contributors
 Tags:              parks, custom post type, blocks, taxonomy, filters
 Tested up to:      6.8
-Stable tag:        0.1.0
+Stable tag:        0.3.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,20 @@ Yes, the plugin uses Secure Custom Fields (SCF) for additional metadata. You can
 Create a page and use the Park Flip Card block to display parks. Add the Park Search Filter and Park Taxonomy Filter blocks to enable filtering.
 
 == Changelog ==
+
+= 0.3.0 =
+* Added [park_embed_map] shortcode for embedded Google Maps with customizable width, height, and zoom
+* Updated [park_map] shortcode to use Google Maps URLs for better compatibility
+* Added field group menu_order to ensure Park Configuration appears first in admin
+* Enhanced test coverage for both map shortcodes
+* Fixed test syntax errors and improved test reliability
+
+= 0.2.0 =
+* Fixed taxonomy icons block to properly display images from media library
+* Added park location coordinates field group (latitude/longitude)
+* Added [park_map] shortcode for mobile-friendly map links
+* Updated plugin-zip script to auto-build before packaging
+* Added comprehensive test coverage for new features
 
 = 0.1.0 =
 * Initial release

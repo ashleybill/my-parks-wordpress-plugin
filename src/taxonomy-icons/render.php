@@ -14,7 +14,7 @@ $icon_width = 100 / $max_per_row;
 	<?php foreach ( $terms as $term ) : 
 		$icon = get_field( 'icon', $term );
 		if ( $icon ) :
-			$icon_url = is_array( $icon ) && isset( $icon['value'] ) ? wp_get_attachment_image_url( $icon['value'], 'thumbnail' ) : '';
+			$icon_url = is_array( $icon ) ? $icon['url'] : $icon;
 			if ( $icon_url ) : ?>
 				<div class="taxonomy-icon-item">
 					<img src="<?php echo esc_url( $icon_url ); ?>" alt="<?php echo esc_attr( $term->name ); ?>" />

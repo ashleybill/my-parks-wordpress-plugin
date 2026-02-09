@@ -16,6 +16,7 @@ function my_parks_register_field_groups() {
 	acf_add_local_field_group( array(
 		'key' => 'group_park_configuration',
 		'title' => 'Park Configuration',
+		'menu_order' => 0,
 		'fields' => array(
 			array(
 				'key' => 'field_park_advisories',
@@ -139,6 +140,46 @@ function my_parks_register_field_groups() {
 		),
 	) );
 
+	// Coordinates Field Group
+	acf_add_local_field_group( array(
+		'key' => 'group_park_coordinates',
+		'title' => 'Park Location',
+		'menu_order' => 1,
+		'fields' => array(
+			array(
+				'key' => 'field_coordinates',
+				'label' => 'Coordinates',
+				'name' => 'coordinates',
+				'type' => 'group',
+				'sub_fields' => array(
+					array(
+						'key' => 'field_latitude',
+						'label' => 'Latitude',
+						'name' => 'latitude',
+						'type' => 'number',
+						'step' => 'any',
+					),
+					array(
+						'key' => 'field_longitude',
+						'label' => 'Longitude',
+						'name' => 'longitude',
+						'type' => 'number',
+						'step' => 'any',
+					),
+				),
+			),
+		),
+		'location' => array(
+			array(
+				array(
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => 'park',
+				),
+			),
+		),
+	) );
+
 	// Taxonomy Icon Field Group (shared by activities and facilities)
 	acf_add_local_field_group( array(
 		'key' => 'group_taxonomy_logo',
@@ -148,7 +189,9 @@ function my_parks_register_field_groups() {
 				'key' => 'field_taxonomy_icon',
 				'label' => 'Icon',
 				'name' => 'icon',
-				'type' => 'icon_picker',
+				'type' => 'image',
+				'return_format' => 'array',
+				'preview_size' => 'thumbnail',
 			),
 		),
 		'location' => array(
@@ -249,3 +292,40 @@ function my_parks_migrate_taxonomy_field( $field, $wpdb ) {
 	}
 }
 add_action( 'acf/init', 'my_parks_migrate_field_keys', 20 );
+
+// Park Map Shortcode
+function park_map_shortcode() {
+	$coords = get_field('coordinates');
+	if ($coords && $coords['latitude'] && $coords['longitude']) {
+		$lat = $coords['latitude'];
+		$lng = $coords['longitude'];
+		return '<a href="https://maps.google.com/maps?q=' . $lat . ',' . $lng . '" target="_blank" class="park-map-link">📍 View on Map</a>';
+	}
+	return '';
+}
+add_shortcode('park_map', 'park_map_shortcode');
+// Embedded Park Map Shortcode
+function park_embed_map_shortcode($atts) {
+	$atts = shortcode_atts(array(
+		'width' => '100%',
+		'height' => '300',
+		'zoom' => '15'
+	), $atts);
+	
+	$coords = get_field('coordinates');
+	if ($coords && $coords['latitude'] && $coords['longitude']) {
+		$lat = $coords['latitude'];
+		$lng = $coords['longitude'];
+		
+		return '<iframe 
+			width="' . esc_attr($atts['width']) . '" 
+			height="' . esc_attr($atts['height']) . '" 
+			src="https://maps.google.com/maps?q=' . $lat . ',' . $lng . '&z=' . esc_attr($atts['zoom']) . '&output=embed" 
+			frameborder="0" 
+			style="border:0;" 
+			allowfullscreen>
+		</iframe>';
+	}
+	return '';
+}
+add_shortcode('park_embed_map', 'park_embed_map_shortcode');
