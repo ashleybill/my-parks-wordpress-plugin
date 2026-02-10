@@ -9,3 +9,9 @@
 		grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
 	}
 }
+
+.park-map-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+}

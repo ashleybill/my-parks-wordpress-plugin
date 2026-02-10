@@ -54,4 +54,15 @@ class Test_Taxonomy_Operations extends WP_UnitTestCase {
 		wp_delete_term( $child['term_id'], 'activity' );
 		wp_delete_term( $parent['term_id'], 'activity' );
 	}
+
+	public function test_has_camping_helper() {
+		$park_id = wp_insert_post([
+			'post_type' => 'park',
+			'post_title' => 'Test Camping Park',
+			'post_status' => 'publish',
+		]);
+		wp_set_object_terms( $park_id, 'camping', 'park_type' );
+		$this->assertTrue( my_parks_has_camping( $park_id ) );
+		wp_delete_post( $park_id, true );
+	}
 }

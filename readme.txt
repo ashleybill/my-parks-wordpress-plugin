@@ -2,7 +2,7 @@
 Contributors:      The WordPress Contributors
 Tags:              parks, custom post type, blocks, taxonomy, filters
 Tested up to:      6.8
-Stable tag:        0.3.4
+Stable tag:        0.4.1
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,16 @@ Yes, the plugin uses Secure Custom Fields (SCF) for additional metadata. You can
 Create a page and use the Park Flip Card block to display parks. Add the Park Search Filter and Park Taxonomy Filter blocks to enable filtering.
 
 == Changelog ==
+
+= 0.4.1 =
+* Fixed camping-booking block pattern visibility in pattern inserter
+
+= 0.4.0 =
+* Added park_type taxonomy for categorizing parks as 'day-use' and/or 'camping'
+* Added my_parks_has_camping() helper function for conditional template logic
+* Added camping-booking block pattern with automatic conditional rendering
+* Fixed park_map shortcode alignment - text and icon now vertically centered
+* Added comprehensive test coverage for new taxonomy and helper function
 
 = 0.3.4 =
 * Added optional text attribute to [park_map] shortcode for custom link text

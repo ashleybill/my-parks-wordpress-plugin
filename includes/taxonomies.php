@@ -55,5 +55,23 @@ function my_parks_register_taxonomies() {
 		'show_in_rest' => true,
 		'rewrite' => array( 'slug' => 'locations' ),
 	) );
+
+	register_taxonomy( 'park_type', 'park', array(
+		'labels' => array(
+			'name' => __( 'Types', 'my-parks' ),
+			'singular_name' => __( 'Type', 'my-parks' ),
+			'all_items' => __( 'All Types', 'my-parks' ),
+		),
+		'hierarchical' => true,
+		'show_in_rest' => true,
+		'rewrite' => array( 'slug' => 'park-types' ),
+	) );
 }
 add_action( 'init', 'my_parks_register_taxonomies' );
+
+function my_parks_has_camping( $post_id = null ) {
+	if ( ! $post_id ) {
+		$post_id = get_the_ID();
+	}
+	return has_term( 'camping', 'park_type', $post_id );
+}

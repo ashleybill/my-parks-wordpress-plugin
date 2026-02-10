@@ -26,3 +26,29 @@ register_block_pattern(
 <!-- /wp:group -->'
     )
 );
+
+register_block_pattern(
+    'my-parks/camping-booking',
+    array(
+        'title'       => __('Camping Booking Button', 'my-parks'),
+        'description' => __('Shows only for parks with camping', 'my-parks'),
+        'categories'  => array('my-park-blocks'),
+        'content'     => '<!-- wp:group {"className":"camping-booking"} -->
+<div class="wp-block-group camping-booking"><!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#">Book Camping</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
+<!-- /wp:group -->',
+    )
+);
+
+add_filter( 'render_block', 'my_parks_conditional_camping_block', 10, 2 );
+function my_parks_conditional_camping_block( $block_content, $block ) {
+    if ( isset( $block['attrs']['className'] ) && strpos( $block['attrs']['className'], 'camping-booking' ) !== false ) {
+        if ( ! my_parks_has_camping() ) {
+            return '';
+        }
+    }
+    return $block_content;
+}
