@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       My Parks
  * Description:       Manage Blocks for Park type posts
- * Version:           0.3.3
+ * Version:           0.3.4
  * Requires at least: 6.8
  * Requires PHP:      7.4
  * Author:            AJB
@@ -23,6 +23,7 @@ require_once __DIR__ . '/includes/taxonomies.php';
 require_once __DIR__ . '/includes/field-groups.php';
 require_once __DIR__ . '/includes/patterns.php';
 require_once __DIR__ . '/includes/search-filter.php';
+require_once __DIR__ . '/includes/shortcodes.php';
 
 /**
  * Check if SCF is active

@@ -136,4 +136,25 @@ class Test_Park_Map_Shortcode extends WP_UnitTestCase {
 		
 		wp_reset_postdata();
 	}
+
+	public function test_shortcode_with_custom_text() {
+		// Set up coordinates using post meta
+		update_post_meta( $this->park_id, 'coordinates', array(
+			'latitude' => 40.7128,
+			'longitude' => -74.0060
+		) );
+		
+		// Set global post
+		global $post;
+		$post = get_post( $this->park_id );
+		setup_postdata( $post );
+		
+		$output = do_shortcode( '[park_map text="View on Map"]' );
+		
+		$this->assertStringContainsString( '<span class="park-map-text">View on Map</span>', $output );
+		$this->assertStringContainsString( '<svg', $output );
+		$this->assertStringContainsString( 'park-map-link', $output );
+		
+		wp_reset_postdata();
+	}
 }

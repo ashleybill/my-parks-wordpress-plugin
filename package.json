@@ -1,6 +1,6 @@
 {
 	"name": "my-parks",
-	"version": "0.3.3",
+	"version": "0.3.4",
 	"description": "Example block scaffolded with Create Block tool.",
 	"author": "The WordPress Contributors",
 	"license": "GPL-2.0-or-later",
@@ -17,7 +17,7 @@
 		"env:start": "wp-env start",
 		"env:stop": "wp-env stop",
 		"env:destroy": "wp-env destroy",
-		"test:php": "wp-env run tests-cli --env-cwd=wp-content/plugins/my-parks composer update && wp-env run tests-cli --env-cwd=wp-content/plugins/my-parks vendor/bin/phpunit"
+		"test:php": "npm run build && wp-env run tests-cli --env-cwd=wp-content/plugins/my-parks composer update && wp-env run tests-cli --env-cwd=wp-content/plugins/my-parks vendor/bin/phpunit"
 	},
 	"dependencies": {
 		"@wordpress/block-editor": "latest",
