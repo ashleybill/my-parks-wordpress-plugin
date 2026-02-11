@@ -2,7 +2,7 @@
 Contributors:      The WordPress Contributors
 Tags:              parks, custom post type, blocks, taxonomy, filters
 Tested up to:      6.8
-Stable tag:        0.4.1
+Stable tag:        0.5.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,16 @@ Yes, the plugin uses Secure Custom Fields (SCF) for additional metadata. You can
 Create a page and use the Park Flip Card block to display parks. Add the Park Search Filter and Park Taxonomy Filter blocks to enable filtering.
 
 == Changelog ==
+
+= 0.5.0 =
+* Added media library gallery picker to Gallery Slider block for use on any page/post
+* Gallery Slider now supports both manual image selection and ACF field fallback
+* Enhanced Gallery Slider block reusability across all post types
+
+= 0.4.2 =
+* Improved mobile display for Operational Dates block - dates now stack under facility name
+* Improved mobile display for Rates block - rate amounts now stack under rate types
+* Enhanced responsive layout for better readability on all screen sizes
 
 = 0.4.1 =
 * Fixed camping-booking block pattern visibility in pattern inserter

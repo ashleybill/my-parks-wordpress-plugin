@@ -42,14 +42,14 @@ if ( ! empty( $attributes['summaryHoverTextColor'] ) || ! empty( $attributes['su
 					<?php echo esc_html( $rate['fee_type'] ); ?>
 				</summary>
 				<div class="accordion-content"<?php echo $content_style ? ' style="' . $content_style . '"' : ''; ?>>
-					<table class="rates-table">
+					<div class="rates-list">
 						<?php foreach ( $rate['breakdown'] as $breakdown_item ) : ?>
-							<tr>
-								<td><?php echo esc_html( $breakdown_item['rate_type'] ); ?></td>
-								<td><?php echo esc_html( $breakdown_item['rate_amount'] ); ?></td>
-							</tr>
+							<div class="rate-item">
+								<div class="rate-type"><?php echo esc_html( $breakdown_item['rate_type'] ); ?></div>
+								<div class="rate-amount"><?php echo esc_html( $breakdown_item['rate_amount'] ); ?></div>
+							</div>
 						<?php endforeach; ?>
-					</table>
+					</div>
 				</div>
 			</details>
 		<?php else : ?>

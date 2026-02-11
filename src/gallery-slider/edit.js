@@ -1,14 +1,31 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, ToggleControl, RangeControl } from '@wordpress/components';
+import { useBlockProps, InspectorControls, MediaUpload, MediaPlaceholder } from '@wordpress/block-editor';
+import { PanelBody, SelectControl, ToggleControl, RangeControl, Button } from '@wordpress/components';
 import './editor.scss';
 
 export default function Edit({ attributes, setAttributes }) {
-	const { aspectRatio, autoplay, autoplaySpeed } = attributes;
+	const { images, aspectRatio, autoplay, autoplaySpeed } = attributes;
 
 	return (
 		<>
 			<InspectorControls>
+				<PanelBody title={__('Gallery Images', 'my-parks')}>
+					<MediaUpload
+						onSelect={(media) => setAttributes({ images: media })}
+						allowedTypes={['image']}
+						multiple
+						gallery
+						value={images?.map(img => img.id)}
+						render={({ open }) => (
+							<Button onClick={open} variant="secondary">
+								{images?.length ? __('Edit Gallery', 'my-parks') : __('Select Images', 'my-parks')}
+							</Button>
+						)}
+					/>
+					{images?.length > 0 && (
+						<p style={{ marginTop: '8px' }}>{images.length} {__('images selected', 'my-parks')}</p>
+					)}
+				</PanelBody>
 				<PanelBody title={__('Settings', 'my-parks')}>
 					<SelectControl
 						label={__('Aspect Ratio', 'my-parks')}

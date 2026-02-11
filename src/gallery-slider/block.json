@@ -9,6 +9,10 @@
 	"description": "Display gallery images in a slider",
 	"example": {},
 	"attributes": {
+		"images": {
+			"type": "array",
+			"default": []
+		},
 		"aspectRatio": {
 			"type": "string",
 			"default": "auto"
