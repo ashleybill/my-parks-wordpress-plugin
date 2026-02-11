@@ -1,10 +1,20 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls, PanelColorSettings } from '@wordpress/block-editor';
 import './editor.scss';
-import { PanelBody, TextControl } from '@wordpress/components';
+import { PanelBody, TextControl, SelectControl } from '@wordpress/components';
 import { PanelRow } from '@wordpress/components';
+import { useSelect } from '@wordpress/data';
 
 export default function Edit({ attributes, setAttributes }) {
+	const parks = useSelect((select) => {
+		return select('core').getEntityRecords('postType', 'park', { per_page: -1 });
+	}, []);
+
+	const parkOptions = parks ? [
+		{ label: __('Current Park (from page context)', 'my-parks'), value: 0 },
+		...parks.map(park => ({ label: park.title.rendered, value: park.id }))
+	] : [{ label: __('Loading...', 'my-parks'), value: 0 }];
+
 	const summaryStyle = {
 		...(attributes.summaryTextColor && { color: attributes.summaryTextColor }),
 		...(attributes.summaryBackgroundColor && { backgroundColor: attributes.summaryBackgroundColor })
@@ -18,6 +28,13 @@ export default function Edit({ attributes, setAttributes }) {
 		<>
 			<InspectorControls>
 				<PanelBody title={__('Settings', 'my-parks')}>
+					<SelectControl
+						label={__('Select Park', 'my-parks')}
+						value={attributes.parkId || 0}
+						options={parkOptions}
+						onChange={(value) => setAttributes({ parkId: parseInt(value) })}
+						help={__('Leave as default to use the current page context', 'my-parks')}
+					/>
 					<TextControl
 						label={__('Empty Message', 'my-parks')}
 						value={attributes.emptyMessage}

@@ -9,6 +9,9 @@
 	"description": "Display Advisories in an accordion format",
 	"example": {},
 	"attributes": {
+		"parkId": {
+			"type": "number"
+		},
 		"summaryTextColor": {
 			"type": "string"
 		},

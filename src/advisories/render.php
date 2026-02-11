@@ -10,7 +10,12 @@
  * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
  */
 
-$advisory_lines = get_field( "park_advisories", $block->context['postId'] ?? get_the_ID() );
+$park_id = $attributes['parkId'] ?? 0;
+if ( $park_id === 0 ) {
+	$park_id = $block->context['postId'] ?? get_the_ID();
+}
+
+$advisory_lines = get_field( "park_advisories", $park_id );
 $empty_message = $attributes['emptyMessage'] ?? 'There are currently no advisories.';
 
 if ( empty( $advisory_lines ) ) {
