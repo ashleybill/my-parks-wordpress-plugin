@@ -1,6 +1,6 @@
 <?php
-// Try block attribute first, then fall back to ACF field
-$gallery = $attributes['images'] ?? get_field( "gallery", $block->context['postId'] ?? get_the_ID() );
+// Try block attribute first (if not empty), then fall back to ACF field
+$gallery = ! empty( $attributes['images'] ) ? $attributes['images'] : get_field( "gallery", $block->context['postId'] ?? get_the_ID() );
 if ( empty( $gallery ) ) {
 	if ( is_admin() ) {
 		// Show placeholder in editor

@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       My Parks
  * Description:       Manage Blocks for Park type posts
- * Version:           0.6.0
+ * Version:           0.6.1
  * Requires at least: 6.8
  * Requires PHP:      7.4
  * Author:            AJB
