@@ -44,7 +44,7 @@ if ( $aspect_ratio !== 'auto' ) {
 				}
 				
 				if ( $image_url ) : ?>
-					<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>" />
+					<img src="<?php echo esc_url( $image_url ); ?>" alt="<?php echo esc_attr( $image_alt ); ?>" class="gallery-image" data-lightbox="true" />
 				<?php endif;
 			endforeach; ?>
 		</div>

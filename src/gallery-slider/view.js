@@ -108,9 +108,131 @@ function initSliders() {
 		block.addEventListener('mouseenter', stopAutoplay);
 		block.addEventListener('mouseleave', startAutoplay);
 		
+		// Add lightbox functionality
+		slides.forEach((slide, index) => {
+			slide.addEventListener('click', () => {
+				openLightbox(slides, index);
+			});
+			slide.style.cursor = 'pointer';
+		});
+		
 		updateControls();
 		startAutoplay();
 	});
+}
+
+// Lightbox functionality
+function openLightbox(images, startIndex = 0) {
+	const lightbox = document.createElement('div');
+	lightbox.className = 'gallery-lightbox';
+	lightbox.innerHTML = `
+		<div class="lightbox-overlay">
+			<div class="lightbox-container">
+				<button class="lightbox-close" aria-label="Close">×</button>
+				<div class="lightbox-slider">
+					${images.map(img => `<img src="${img.src}" alt="${img.alt}" />`).join('')}
+				</div>
+				${images.length > 1 ? `
+					<button class="lightbox-prev" aria-label="Previous">‹</button>
+					<button class="lightbox-next" aria-label="Next">›</button>
+					<div class="lightbox-dots"></div>
+				` : ''}
+			</div>
+		</div>
+	`;
+	
+	document.body.appendChild(lightbox);
+	document.body.style.overflow = 'hidden';
+	
+	const slider = lightbox.querySelector('.lightbox-slider');
+	const closeBtn = lightbox.querySelector('.lightbox-close');
+	const prevBtn = lightbox.querySelector('.lightbox-prev');
+	const nextBtn = lightbox.querySelector('.lightbox-next');
+	const dotsContainer = lightbox.querySelector('.lightbox-dots');
+	const slides = Array.from(slider.children);
+	let currentIndex = startIndex;
+	
+	// Initialize dots if multiple images
+	if (images.length > 1) {
+		slides.forEach((_, i) => {
+			const dot = document.createElement('button');
+			dot.className = 'lightbox-dot' + (i === startIndex ? ' active' : '');
+			dot.addEventListener('click', () => goToSlide(i));
+			dotsContainer.appendChild(dot);
+		});
+	}
+	
+	const dots = Array.from(dotsContainer?.children || []);
+	
+	function goToSlide(index) {
+		if (index < 0) index = slides.length - 1;
+		else if (index >= slides.length) index = 0;
+		
+		currentIndex = index;
+		slider.scrollTo({
+			left: currentIndex * slider.clientWidth,
+			behavior: 'smooth'
+		});
+		updateDots();
+	}
+	
+	function updateDots() {
+		dots.forEach((dot, i) => {
+			dot.classList.toggle('active', i === currentIndex);
+		});
+	}
+	
+	function closeLightbox() {
+		document.body.removeChild(lightbox);
+		document.body.style.overflow = '';
+	}
+	
+	// Event listeners
+	closeBtn.addEventListener('click', closeLightbox);
+	lightbox.querySelector('.lightbox-overlay').addEventListener('click', (e) => {
+		if (e.target === e.currentTarget) closeLightbox();
+	});
+	
+	if (prevBtn) {
+		prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+		nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+	}
+	
+	// Keyboard navigation
+	document.addEventListener('keydown', function handleKeydown(e) {
+		if (e.key === 'Escape') {
+			closeLightbox();
+			document.removeEventListener('keydown', handleKeydown);
+		} else if (e.key === 'ArrowLeft' && prevBtn) {
+			goToSlide(currentIndex - 1);
+		} else if (e.key === 'ArrowRight' && nextBtn) {
+			goToSlide(currentIndex + 1);
+		}
+	});
+	
+	// Handle orientation changes
+	window.addEventListener('orientationchange', () => {
+		setTimeout(() => goToSlide(currentIndex), 100);
+	});
+	
+	// Touch/swipe support
+	let startX = 0;
+	slider.addEventListener('touchstart', (e) => {
+		startX = e.touches[0].clientX;
+	});
+	
+	slider.addEventListener('touchend', (e) => {
+		const endX = e.changedTouches[0].clientX;
+		const diff = startX - endX;
+		
+		if (Math.abs(diff) > 50) {
+			if (diff > 0 && nextBtn) goToSlide(currentIndex + 1);
+			else if (diff < 0 && prevBtn) goToSlide(currentIndex - 1);
+		}
+	});
+	
+	// Initialize position
+	setTimeout(() => goToSlide(startIndex), 50);
 }
 
 if (document.readyState === 'loading') {

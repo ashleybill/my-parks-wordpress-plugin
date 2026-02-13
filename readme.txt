@@ -2,7 +2,7 @@
 Contributors:      The WordPress Contributors
 Tags:              parks, custom post type, blocks, taxonomy, filters
 Tested up to:      6.8
-Stable tag:        0.6.1
+Stable tag:        0.8.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,21 @@ Yes, the plugin uses Secure Custom Fields (SCF) for additional metadata. You can
 Create a page and use the Park Flip Card block to display parks. Add the Park Search Filter and Park Taxonomy Filter blocks to enable filtering.
 
 == Changelog ==
+
+= 0.8.0 =
+* Improved Taxonomy Icons block with responsive auto-fit grid layout
+* Replaced fixed "max per row" setting with flexible "icon size" control
+* Icons now automatically wrap based on container width and icon size
+* Enhanced editor preview to match frontend responsive behavior
+* Better mobile and column layout compatibility
+
+= 0.7.0 =
+* Added lightbox functionality to Gallery Slider - click/tap images to view fullscreen
+* Added navigation controls in lightbox mode (arrows, dots, keyboard shortcuts)
+* Added touch/swipe support for mobile lightbox navigation
+* Added orientation change handling for responsive lightbox behavior
+* Enhanced image hover effects and visual feedback
+* Improved mobile viewing experience with dedicated fullscreen mode
 
 = 0.6.1 =
 * Fixed Gallery Slider block not displaying on park pages when using ACF field fallback

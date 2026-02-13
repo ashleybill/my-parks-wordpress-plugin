@@ -1,16 +1,20 @@
 .wp-block-my-parks-taxonomy-icons {
 	display: grid;
-	grid-template-columns: repeat(var(--max-per-row, 6), minmax(0, 32px));
+	grid-template-columns: repeat(auto-fit, minmax(var(--icon-size, 32px), var(--icon-size, 32px)));
 	gap: 0.75rem;
+	max-width: 100%;
+	overflow: hidden;
 }
 
 .taxonomy-icon-item {
 	position: relative;
+	width: var(--icon-size, 32px);
+	height: var(--icon-size, 32px);
 }
 
 .taxonomy-icon-item img {
 	width: 100%;
-	height: auto;
+	height: 100%;
 	object-fit: contain;
 	aspect-ratio: 1;
 	display: block;
