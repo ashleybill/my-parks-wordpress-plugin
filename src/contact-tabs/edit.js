@@ -23,7 +23,29 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	);
 
 	useEffect(() => {
+		// Check URL hash on mount and handle hash changes
+		const handleHashChange = () => {
+			const hash = window.location.hash.slice(1);
+			if (!hash) return;
+			
+			const tabIndex = innerBlocks.findIndex(
+				block => block.attributes.title.toLowerCase().replace(/\s+/g, '-') === hash
+			);
+			
+			if (tabIndex !== -1 && tabIndex !== activeTab) {
+				setAttributes({ activeTab: tabIndex });
+			}
+		};
+		
+		handleHashChange();
+		window.addEventListener('hashchange', handleHashChange);
+		
+		return () => window.removeEventListener('hashchange', handleHashChange);
+	}, [innerBlocks, activeTab, setAttributes]);
+
+	useEffect(() => {
 		let isUpdating = false;
+		let timeoutId = null;
 		
 		const updateTabs = () => {
 			if (isUpdating) return;
@@ -51,8 +73,13 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			return true;
 		};
 
+		const debouncedUpdate = () => {
+			if (timeoutId) clearTimeout(timeoutId);
+			timeoutId = setTimeout(updateTabs, 0);
+		};
+
 		if (updateTabs()) {
-			const observer = new MutationObserver(updateTabs);
+			const observer = new MutationObserver(debouncedUpdate);
 			const container = document.querySelector(`[data-block="${clientId}"] .tabs-content`);
 			if (container) {
 				observer.observe(container, { 
@@ -61,7 +88,10 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					attributes: true,
 					attributeFilter: ['class']
 				});
-				return () => observer.disconnect();
+				return () => {
+					observer.disconnect();
+					if (timeoutId) clearTimeout(timeoutId);
+				};
 			}
 		}
 
@@ -69,7 +99,10 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 			setTimeout(updateTabs, delay)
 		);
 
-		return () => timers.forEach(clearTimeout);
+		return () => {
+			timers.forEach(clearTimeout);
+			if (timeoutId) clearTimeout(timeoutId);
+		};
 	}, [activeTab, clientId, innerBlocks.length]);
 
 	return (
