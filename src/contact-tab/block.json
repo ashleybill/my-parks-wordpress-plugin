@@ -1,0 +1,23 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "my-parks/contact-tab",
+	"version": "0.1.0",
+	"title": "Contact Tab",
+	"category": "my-park-blocks",
+	"parent": ["my-parks/contact-tabs"],
+	"icon": "table-col-after",
+	"description": "Individual tab within Contact Tabs",
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": "Tab"
+		}
+	},
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"textdomain": "my-parks",
+	"editorScript": "file:./index.js"
+}

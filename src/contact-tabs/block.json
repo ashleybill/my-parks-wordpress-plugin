@@ -1,0 +1,38 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "my-parks/contact-tabs",
+	"version": "0.1.0",
+	"title": "Contact Tabs",
+	"category": "my-park-blocks",
+	"icon": "table-col-after",
+	"description": "Tabbed content for contact information",
+	"attributes": {
+		"activeTab": {
+			"type": "number",
+			"default": 0
+		}
+	},
+	"supports": {
+		"html": false,
+		"spacing": {
+			"padding": true,
+			"margin": true
+		},
+		"color": {
+			"background": true,
+			"text": true
+		},
+		"__experimentalBorder": {
+			"radius": true,
+			"color": true,
+			"width": true
+		},
+		"shadow": true
+	},
+	"textdomain": "my-parks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}

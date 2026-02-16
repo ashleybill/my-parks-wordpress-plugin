@@ -2,7 +2,7 @@
 Contributors:      The WordPress Contributors
 Tags:              parks, custom post type, blocks, taxonomy, filters
 Tested up to:      6.8
-Stable tag:        0.8.0
+Stable tag:        0.9.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,13 @@ Yes, the plugin uses Secure Custom Fields (SCF) for additional metadata. You can
 Create a page and use the Park Flip Card block to display parks. Add the Park Search Filter and Park Taxonomy Filter blocks to enable filtering.
 
 == Changelog ==
+
+= 0.9.0 =
+* Added Contact Tabs block for organizing contact information in tabbed interface
+* Tabs support customizable titles and unlimited tab additions/removals
+* Responsive design with mobile-friendly stacked layout
+* Smooth animations and visual feedback for tab switching
+* InnerBlocks support allows any WordPress blocks inside tabs
 
 = 0.8.0 =
 * Improved Taxonomy Icons block with responsive auto-fit grid layout
