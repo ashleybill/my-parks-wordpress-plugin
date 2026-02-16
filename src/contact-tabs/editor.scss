@@ -43,4 +43,14 @@
 		padding: 20px;
 		min-height: 200px;
 	}
+
+	// Hide all tabs by default
+	.tabs-content > .wp-block-my-parks-contact-tab {
+		display: none;
+
+		// Show only the active tab
+		&.is-active-tab {
+			display: block;
+		}
+	}
 }
