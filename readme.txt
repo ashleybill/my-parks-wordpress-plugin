@@ -2,7 +2,7 @@
 Contributors:      The WordPress Contributors
 Tags:              parks, custom post type, blocks, taxonomy, filters
 Tested up to:      6.8
-Stable tag:        0.9.0
+Stable tag:        0.9.1
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,10 @@ Yes, the plugin uses Secure Custom Fields (SCF) for additional metadata. You can
 Create a page and use the Park Flip Card block to display parks. Add the Park Search Filter and Park Taxonomy Filter blocks to enable filtering.
 
 == Changelog ==
+
+= 0.9.1 =
+* Added pattern for optional button for cabin booking, based on if the park has cabin type or not. 
+* Optional configuration for the url for cabins booking.
 
 = 0.9.0 =
 * Added Contact Tabs block for organizing contact information in tabbed interface

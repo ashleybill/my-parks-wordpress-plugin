@@ -75,3 +75,10 @@ function my_parks_has_camping( $post_id = null ) {
 	}
 	return has_term( 'camping', 'park_type', $post_id );
 }
+
+function my_parks_has_cabin( $post_id = null ) {
+	if ( ! $post_id ) {
+		$post_id = get_the_ID();
+	}
+	return has_term( 'cabin', 'park_type', $post_id );
+}
