@@ -24,7 +24,7 @@ function my_parks_register_post_types() {
 		'public' => true,
 		'has_archive' => false,
 		'show_in_rest' => true,
-		'supports' => array( 'title', 'thumbnail', 'excerpt', 'custom-fields' ),
+		'supports' => array( 'title', 'editor', 'thumbnail', 'excerpt', 'custom-fields' ),
 		'menu_icon' => 'dashicons-palmtree',
 		'rewrite' => array( 'slug' => 'parks' ),
 	) );
