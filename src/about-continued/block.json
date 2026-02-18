@@ -1,18 +1,20 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "my-parks/visitor-services",
+	"name": "my-parks/about-continued",
 	"version": "0.1.0",
-	"title": "Visitor Services",
+	"title": "About (Continued)",
 	"category": "my-park-blocks",
-	"icon": "info",
-	"description": "Display Visitor Services text",
+	"icon": "text",
+	"description": "Display continued park description",
 	"example": {},
 	"supports": {
 		"html": false,
 		"color": {
 			"background": true,
-			"text": true
+			"text": true,
+			"link": true,
+			"heading": true
 		},
 		"typography": {
 			"fontSize": true,
@@ -21,12 +23,6 @@
 		"spacing": {
 			"padding": true,
 			"margin": true
-		}
-	},
-	"attributes": {
-		"defaultText": {
-			"type": "string",
-			"default": ""
 		}
 	},
 	"usesContext": ["postId"],

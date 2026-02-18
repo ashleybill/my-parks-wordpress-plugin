@@ -9,6 +9,8 @@ class Test_Blocks extends WP_UnitTestCase {
 
 	public function test_block_json_files_exist() {
 		$expected_blocks = [
+			'about-continued',
+			'about-short',
 			'advisories',
 			'contact-tabs',
 			'gallery-slider',

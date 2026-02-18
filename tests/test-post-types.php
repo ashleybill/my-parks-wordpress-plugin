@@ -25,7 +25,7 @@ class Test_Post_Types extends WP_UnitTestCase {
 		$this->assertTrue( post_type_supports( 'park', 'title' ) );
 		$this->assertTrue( post_type_supports( 'park', 'thumbnail' ) );
 		$this->assertTrue( post_type_supports( 'park', 'excerpt' ) );
-		$this->assertTrue( post_type_supports( 'park', 'editor' ) );
+		$this->assertFalse( post_type_supports( 'park', 'editor' ) );
 		$this->assertFalse( post_type_supports( 'park', 'author' ) );
 	}
 }

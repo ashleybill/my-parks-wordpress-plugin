@@ -2,7 +2,7 @@
 Contributors:      The WordPress Contributors
 Tags:              parks, custom post type, blocks, taxonomy, filters
 Tested up to:      6.8
-Stable tag:        0.9.1
+Stable tag:        0.10.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,12 +14,14 @@ My Parks provides a complete solution for managing and displaying park informati
 
 * **Custom Post Type**: Park post type with featured images and excerpts
 * **Taxonomies**: Activities, Facilities, and Locations for organizing parks
-* **Custom Blocks**: 9 specialized Gutenberg blocks for displaying park information
+* **Custom Blocks**: 11 specialized Gutenberg blocks for displaying park information
 * **Filtering**: Search and taxonomy-based filtering for park listings
 * **ACF Integration**: Works with Secure Custom Fields for additional park metadata
 
 **Included Blocks:**
 
+* About (Short) - Display short park description with WYSIWYG editor
+* About (Continued) - Display continued park description with WYSIWYG editor
 * Park Flip Card - Display parks as interactive flip cards
 * Park Search Filter - Search parks by keyword
 * Park Taxonomy Filter - Filter parks by activities, facilities, and locations
@@ -56,6 +58,14 @@ Yes, the plugin uses Secure Custom Fields (SCF) for additional metadata. You can
 Create a page and use the Park Flip Card block to display parks. Add the Park Search Filter and Park Taxonomy Filter blocks to enable filtering.
 
 == Changelog ==
+
+= 0.10.0 =
+* Added About (Short) and About (Continued) WYSIWYG fields to Park Configuration
+* Added About (Short) and About (Continued) blocks for displaying park descriptions
+* Removed editor support from park post type to maintain ACF compatibility
+* Added automatic migration of existing post_content to about_short field
+* Blocks support color (text, background, links, headings) and typography styling
+* Enhanced block styling with proper inheritance for child elements
 
 = 0.9.1 =
 * Added pattern for optional button for cabin booking, based on if the park has cabin type or not. 

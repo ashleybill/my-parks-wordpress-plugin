@@ -17,7 +17,27 @@ function my_parks_register_field_groups() {
 		'key' => 'group_park_configuration',
 		'title' => 'Park Configuration',
 		'menu_order' => 0,
+		'active' => true,
+		'show_in_rest' => false,
 		'fields' => array(
+			array(
+				'key' => 'field_about_short',
+				'label' => 'About (Short)',
+				'name' => 'about_short',
+				'type' => 'wysiwyg',
+				'instructions' => 'Short description to display next to the gallery',
+				'toolbar' => 'full',
+				'media_upload' => 0,
+			),
+			array(
+				'key' => 'field_about_continued',
+				'label' => 'About (Continued)',
+				'name' => 'about_continued',
+				'type' => 'wysiwyg',
+				'instructions' => 'Additional park information',
+				'toolbar' => 'full',
+				'media_upload' => 0,
+			),
 			array(
 				'key' => 'field_park_advisories',
 				'label' => 'Advisories',
@@ -244,6 +264,33 @@ function my_parks_migrate_field_keys() {
 	update_option( 'my_parks_field_keys_migrated', true );
 }
 
+function my_parks_migrate_post_content_to_acf() {
+	if ( get_option( 'my_parks_content_migrated' ) ) {
+		return;
+	}
+	
+	if ( ! function_exists( 'update_field' ) ) {
+		return;
+	}
+	
+	global $wpdb;
+	
+	// Get all parks with post_content
+	$parks = $wpdb->get_results(
+		"SELECT ID, post_content FROM {$wpdb->posts} 
+		WHERE post_type = 'park' AND post_content != ''"
+	);
+	
+	foreach ( $parks as $park ) {
+		// Only migrate if about_short is empty
+		if ( ! get_field( 'about_short', $park->ID ) ) {
+			update_field( 'about_short', $park->post_content, $park->ID );
+		}
+	}
+	
+	update_option( 'my_parks_content_migrated', true );
+}
+
 function my_parks_migrate_field_recursive( $field, $wpdb ) {
 	$field_name = $field['name'];
 	$field_key = $field['key'];
@@ -292,3 +339,4 @@ function my_parks_migrate_taxonomy_field( $field, $wpdb ) {
 	}
 }
 add_action( 'acf/init', 'my_parks_migrate_field_keys', 20 );
+add_action( 'acf/init', 'my_parks_migrate_post_content_to_acf', 30 );
