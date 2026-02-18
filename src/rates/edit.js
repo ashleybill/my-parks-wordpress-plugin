@@ -1,9 +1,11 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls, PanelColorSettings } from '@wordpress/block-editor';
-import { PanelRow } from '@wordpress/components';
+import { PanelBody, PanelRow, TextareaControl } from '@wordpress/components';
 import './editor.scss';
 
 export default function Edit({ attributes, setAttributes }) {
+	const { defaultText } = attributes;
+
 	const summaryStyle = {
 		...(attributes.summaryTextColor && { color: attributes.summaryTextColor }),
 		...(attributes.summaryBackgroundColor && { backgroundColor: attributes.summaryBackgroundColor })
@@ -15,6 +17,16 @@ export default function Edit({ attributes, setAttributes }) {
 
 	return (
 		<>
+			<InspectorControls>
+				<PanelBody title={__('Settings', 'my-parks')}>
+					<TextareaControl
+						label={__('Default text (when rates field is empty)', 'my-parks')}
+						value={defaultText}
+						onChange={(value) => setAttributes({ defaultText: value })}
+						help={__('This text will be displayed when the rates field is empty.', 'my-parks')}
+					/>
+				</PanelBody>
+			</InspectorControls>
 			<InspectorControls group="color">
 				<PanelRow>
 					<PanelColorSettings

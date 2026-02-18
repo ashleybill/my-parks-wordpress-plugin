@@ -1,7 +1,19 @@
 <?php
 $rates = get_field( "rates", $block->context['postId'] ?? get_the_ID() );
+$default_text = $attributes['defaultText'] ?? '';
+
+// Use rates field if available, otherwise use default text
 if ( empty( $rates ) ) {
-	return '';
+	if ( empty( $default_text ) ) {
+		return '';
+	}
+	// Display default text
+	?>
+	<div <?php echo get_block_wrapper_attributes(); ?>>
+		<p><?php echo nl2br( esc_html( $default_text ) ); ?></p>
+	</div>
+	<?php
+	return;
 }
 
 $summary_style = '';

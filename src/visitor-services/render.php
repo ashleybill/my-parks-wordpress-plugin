@@ -8,5 +8,14 @@ $content = !empty( $visitor_services ) ? $visitor_services : $default_text;
 if ( empty( $content ) ) {
 	return '';
 }
+
+// Handle WYSIWYG content vs plain text
+if ( $content === $visitor_services && !empty( $visitor_services ) ) {
+	// This is WYSIWYG content from ACF, output as-is
+	$output = $content;
+} else {
+	// This is plain text (default text), convert line breaks
+	$output = nl2br( esc_html( $content ) );
+}
 ?>
-<p <?php echo get_block_wrapper_attributes(); ?>><?php echo nl2br( esc_html( $content ) ); ?></p>
+<div <?php echo get_block_wrapper_attributes(); ?>><?php echo $output; ?></div>

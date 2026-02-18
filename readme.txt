@@ -2,7 +2,7 @@
 Contributors:      The WordPress Contributors
 Tags:              parks, custom post type, blocks, taxonomy, filters
 Tested up to:      6.8
-Stable tag:        0.10.0
+Stable tag:        0.11.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,6 +58,13 @@ Yes, the plugin uses Secure Custom Fields (SCF) for additional metadata. You can
 Create a page and use the Park Flip Card block to display parks. Add the Park Search Filter and Park Taxonomy Filter blocks to enable filtering.
 
 == Changelog ==
+
+= 0.11.0 =
+* Enhanced Visitor Services block with configurable default text for empty fields
+* Converted Visitor Services field from textarea to WYSIWYG editor with automatic content migration
+* Added configurable default text to Rates block for when no rates are available
+* Reorganized Park Configuration fields into collapsible tabs: Content, Advisories, and Dates & Rates
+* Improved admin interface organization and user experience
 
 = 0.10.0 =
 * Added About (Short) and About (Continued) WYSIWYG fields to Park Configuration

@@ -9,6 +9,10 @@
 	"description": "Display park rates in an accordion format.",
 	"example": {},
 	"attributes": {
+		"defaultText": {
+			"type": "string",
+			"default": ""
+		},
 		"summaryTextColor": {
 			"type": "string"
 		},
