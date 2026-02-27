@@ -39,11 +39,13 @@ if ( ! empty( $attributes['summaryHoverTextColor'] ) || ! empty( $attributes['su
 		if ( $has_details ) : ?>
 			<details>
 				<summary<?php echo $summary_style ? ' style="' . $summary_style . '"' : ''; ?>>
-					<span class="facility-name"><?php echo esc_html( $date['facilityservicearea'] ); ?></span>
-					<span class="date-range"><?php echo esc_html( $date['from'] ); ?> - <?php echo esc_html( $date['to'] ); ?></span>
+					<div class="summary-content">
+						<span class="facility-name"><?php echo esc_html( $date['facilityservicearea'] ); ?></span>
+						<span class="date-range"><?php echo esc_html( $date['from'] ); ?> - <?php echo esc_html( $date['to'] ); ?></span>
+					</div>
 				</summary>
 				<div class="accordion-content"<?php echo $content_style ? ' style="' . $content_style . '"' : ''; ?>>
-					<p><?php echo esc_html( $date['details'] ); ?></p>
+					<?php echo wp_kses_post( $date['details'] ); ?>
 				</div>
 			</details>
 		<?php else : ?>

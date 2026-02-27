@@ -21,6 +21,7 @@ function my_parks_register_taxonomies() {
 		),
 		'hierarchical' => true,
 		'show_in_rest' => true,
+		'publicly_queryable' => false,
 		'rewrite' => array( 'slug' => 'activities' ),
 	) );
 
@@ -37,6 +38,7 @@ function my_parks_register_taxonomies() {
 		),
 		'hierarchical' => true,
 		'show_in_rest' => true,
+		'publicly_queryable' => false,
 		'rewrite' => array( 'slug' => 'facilities' ),
 	) );
 
@@ -53,6 +55,7 @@ function my_parks_register_taxonomies() {
 		),
 		'hierarchical' => true,
 		'show_in_rest' => true,
+		'publicly_queryable' => false,
 		'rewrite' => array( 'slug' => 'locations' ),
 	) );
 
@@ -64,6 +67,7 @@ function my_parks_register_taxonomies() {
 		),
 		'hierarchical' => true,
 		'show_in_rest' => true,
+		'publicly_queryable' => false,
 		'rewrite' => array( 'slug' => 'park-types' ),
 	) );
 }

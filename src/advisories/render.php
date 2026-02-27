@@ -65,7 +65,7 @@ if ( ! empty( $attributes['summaryHoverTextColor'] ) || ! empty( $attributes['su
 					<?php echo esc_html( $advisory_line['title'] ); ?>
 				</summary>
 				<div class="accordion-content"<?php echo $content_style ? ' style="' . $content_style . '"' : ''; ?>>
-					<p><?php echo esc_html( $advisory_line['description'] ); ?></p>
+					<?php echo wp_kses_post( $advisory_line['description'] ); ?>
 				</div>
 			</details>
 		<?php else : ?>

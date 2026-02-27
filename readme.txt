@@ -2,7 +2,7 @@
 Contributors:      The WordPress Contributors
 Tags:              parks, custom post type, blocks, taxonomy, filters
 Tested up to:      6.8
-Stable tag:        0.11.0
+Stable tag:        0.11.3
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,6 +58,16 @@ Yes, the plugin uses Secure Custom Fields (SCF) for additional metadata. You can
 Create a page and use the Park Flip Card block to display parks. Add the Park Search Filter and Park Taxonomy Filter blocks to enable filtering.
 
 == Changelog ==
+
+= 0.11.3 =
+* Updated advisories and operational dates to use WYSIWYG for description and details. 
+* Fixed position of +/- for operational dates
+
+= 0.11.2 =
+* Allow YoastSEO to analyze content in about,about continued sections
+
+= 0.11.1 =
+* removed taxonomies from being publically visible
 
 = 0.11.0 =
 * Enhanced Visitor Services block with configurable default text for empty fields

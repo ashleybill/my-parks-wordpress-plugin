@@ -58,8 +58,10 @@ export default function Edit({ attributes, setAttributes }) {
 			<div { ...useBlockProps() }>
 				<details open>
 					<summary style={summaryStyle}>
-						<span className="facility-name">{__('Sample Facility', 'my-parks')}</span>
-						<span className="date-range">{__('May 1 - September 30', 'my-parks')}</span>
+						<div className="summary-content">
+							<span className="facility-name">{__('Sample Facility', 'my-parks')}</span>
+							<span className="date-range">{__('May 1 - September 30', 'my-parks')}</span>
+						</div>
 					</summary>
 					<div className="accordion-content" style={{...contentStyle, height: 'auto'}}>
 						<p>{__('Sample operational details', 'my-parks')}</p>

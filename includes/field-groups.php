@@ -84,7 +84,9 @@ function my_parks_register_field_groups() {
 						'key' => 'field_advisory_description',
 						'label' => 'Description',
 						'name' => 'description',
-						'type' => 'textarea',
+						'type' => 'wysiwyg',
+						'toolbar' => 'basic',
+						'media_upload' => 0,
 					),
 				),
 			),
@@ -129,7 +131,9 @@ function my_parks_register_field_groups() {
 						'key' => 'field_details',
 						'label' => 'Details',
 						'name' => 'details',
-						'type' => 'textarea',
+						'type' => 'wysiwyg',
+						'toolbar' => 'basic',
+						'media_upload' => 0,
 					),
 				),
 			),
@@ -364,6 +368,8 @@ function my_parks_migrate_taxonomy_field( $field, $wpdb ) {
 add_action( 'acf/init', 'my_parks_migrate_field_keys', 20 );
 add_action( 'acf/init', 'my_parks_migrate_post_content_to_acf', 30 );
 add_action( 'acf/init', 'my_parks_migrate_visitor_services_to_wysiwyg', 40 );
+add_action( 'acf/init', 'my_parks_migrate_operational_dates_to_wysiwyg', 50 );
+add_action( 'acf/init', 'my_parks_migrate_advisories_to_wysiwyg', 60 );
 
 function my_parks_migrate_visitor_services_to_wysiwyg() {
 	if ( get_option( 'my_parks_visitor_services_migrated' ) ) {
@@ -393,4 +399,82 @@ function my_parks_migrate_visitor_services_to_wysiwyg() {
 	}
 	
 	update_option( 'my_parks_visitor_services_migrated', true );
+}
+
+function my_parks_migrate_operational_dates_to_wysiwyg() {
+	if ( get_option( 'my_parks_operational_dates_migrated' ) ) {
+		return;
+	}
+	
+	if ( ! function_exists( 'get_field' ) || ! function_exists( 'update_field' ) ) {
+		return;
+	}
+	
+	global $wpdb;
+	
+	// Get all parks with operational_dates content
+	$parks = $wpdb->get_results(
+		"SELECT p.ID FROM {$wpdb->posts} p 
+		INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id 
+		WHERE p.post_type = 'park' AND pm.meta_key = 'operational_dates' AND pm.meta_value != ''"
+	);
+	
+	foreach ( $parks as $park ) {
+		$operational_dates = get_field( 'operational_dates', $park->ID );
+		if ( $operational_dates && is_array( $operational_dates ) ) {
+			$updated = false;
+			foreach ( $operational_dates as $index => $date ) {
+				if ( isset( $date['details'] ) && is_string( $date['details'] ) && ! empty( $date['details'] ) ) {
+					// Convert line breaks to HTML paragraphs for WYSIWYG
+					$html_content = wpautop( $date['details'] );
+					$operational_dates[$index]['details'] = $html_content;
+					$updated = true;
+				}
+			}
+			if ( $updated ) {
+				update_field( 'operational_dates', $operational_dates, $park->ID );
+			}
+		}
+	}
+	
+	update_option( 'my_parks_operational_dates_migrated', true );
+}
+
+function my_parks_migrate_advisories_to_wysiwyg() {
+	if ( get_option( 'my_parks_advisories_migrated' ) ) {
+		return;
+	}
+	
+	if ( ! function_exists( 'get_field' ) || ! function_exists( 'update_field' ) ) {
+		return;
+	}
+	
+	global $wpdb;
+	
+	// Get all parks with park_advisories content
+	$parks = $wpdb->get_results(
+		"SELECT p.ID FROM {$wpdb->posts} p 
+		INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id 
+		WHERE p.post_type = 'park' AND pm.meta_key = 'park_advisories' AND pm.meta_value != ''"
+	);
+	
+	foreach ( $parks as $park ) {
+		$advisories = get_field( 'park_advisories', $park->ID );
+		if ( $advisories && is_array( $advisories ) ) {
+			$updated = false;
+			foreach ( $advisories as $index => $advisory ) {
+				if ( isset( $advisory['description'] ) && is_string( $advisory['description'] ) && ! empty( $advisory['description'] ) ) {
+					// Convert line breaks to HTML paragraphs for WYSIWYG
+					$html_content = wpautop( $advisory['description'] );
+					$advisories[$index]['description'] = $html_content;
+					$updated = true;
+				}
+			}
+			if ( $updated ) {
+				update_field( 'park_advisories', $advisories, $park->ID );
+			}
+		}
+	}
+	
+	update_option( 'my_parks_advisories_migrated', true );
 }
