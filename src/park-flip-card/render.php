@@ -4,6 +4,10 @@ $featured_image = get_the_post_thumbnail_url( $post_id, 'large' );
 $title = get_the_title( $post_id );
 $excerpt = get_the_excerpt( $post_id );
 $permalink = get_permalink( $post_id );
+$section   = isset( $_GET['section'] ) ? sanitize_key( $_GET['section'] ) : '';
+if ( $section ) {
+	$permalink = $permalink . '#' . $section;
+}
 
 if ( ! $featured_image ) {
 	$featured_image = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"%3E%3Crect fill="%23ddd" width="400" height="300"/%3E%3C/svg%3E';

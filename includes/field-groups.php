@@ -175,6 +175,42 @@ function my_parks_register_field_groups() {
 					),
 				),
 			),
+			array(
+				'key' => 'field_tab_maps',
+				'label' => 'Maps',
+				'name' => '',
+				'type' => 'tab',
+				'placement' => 'top',
+			),
+			array(
+				'key' => 'field_park_maps',
+				'label' => 'Park Maps',
+				'name' => 'park_maps',
+				'type' => 'repeater',
+				'layout' => 'block',
+				'button_label' => 'Add Map',
+				'instructions' => 'Add downloadable park maps (e.g. campground map, trail map, cabin map). Each entry needs a label and a file.',
+				'sub_fields' => array(
+					array(
+						'key' => 'field_park_map_label',
+						'label' => 'Label',
+						'name' => 'label',
+						'type' => 'text',
+						'instructions' => 'Display name for this map (e.g. "Campground Map", "Trail Map")',
+						'required' => 1,
+					),
+					array(
+						'key' => 'field_park_map_file',
+						'label' => 'Map File',
+						'name' => 'file',
+						'type' => 'file',
+						'instructions' => 'Upload or select a PDF or image file',
+						'return_format' => 'array',
+						'library' => 'all',
+						'required' => 1,
+					),
+				),
+			),
 		),
 		'location' => array(
 			array(

@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       My Parks
  * Description:       Manage Blocks for Park type posts
- * Version:           0.11.3
+ * Version:           0.12.0
  * Requires at least: 6.8
  * Requires PHP:      7.4
  * Author:            AJB
@@ -146,9 +146,9 @@ function my_parks_yoast_content_filter( $content, $post ) {
 	$visitor_services = get_field( 'visitor_services', $post->ID );
 	
 	$acf_content = '';
-	if ( $about_short ) $acf_content .= wp_strip_all_tags( $about_short ) . ' ';
-	if ( $about_continued ) $acf_content .= wp_strip_all_tags( $about_continued ) . ' ';
-	if ( $visitor_services ) $acf_content .= wp_strip_all_tags( $visitor_services ) . ' ';
+	if ( $about_short ) $acf_content .= $about_short . ' ';
+	if ( $about_continued ) $acf_content .= $about_continued . ' ';
+	if ( $visitor_services ) $acf_content .= $visitor_services . ' ';
 	
 	return $content . ' ' . trim( $acf_content );
 }
@@ -171,9 +171,9 @@ function my_parks_yoast_admin_script() {
 	$visitor_services = get_field( 'visitor_services', $post->ID );
 	
 	$content = '';
-	if ( $about_short ) $content .= wp_strip_all_tags( $about_short ) . ' ';
-	if ( $about_continued ) $content .= wp_strip_all_tags( $about_continued ) . ' ';
-	if ( $visitor_services ) $content .= wp_strip_all_tags( $visitor_services ) . ' ';
+	if ( $about_short ) $content .= $about_short . ' ';
+	if ( $about_continued ) $content .= $about_continued . ' ';
+	if ( $visitor_services ) $content .= $visitor_services . ' ';
 	
 	if ( ! $content ) return;
 	

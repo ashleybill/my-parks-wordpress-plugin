@@ -2,7 +2,7 @@
 Contributors:      The WordPress Contributors
 Tags:              parks, custom post type, blocks, taxonomy, filters
 Tested up to:      6.8
-Stable tag:        0.11.3
+Stable tag:        0.12.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,6 +18,8 @@ My Parks provides a complete solution for managing and displaying park informati
 * **Filtering**: Search and taxonomy-based filtering for park listings
 * **ACF Integration**: Works with Secure Custom Fields for additional park metadata
 
+* **Park Maps** - Display downloadable park maps (campground, trail, cabin, etc.)
+
 **Included Blocks:**
 
 * About (Short) - Display short park description with WYSIWYG editor
@@ -30,7 +32,7 @@ My Parks provides a complete solution for managing and displaying park informati
 * Visitor Services - Show available visitor services
 * Rates - Display park fees and pricing
 * Advisories - Show important park alerts and notices
-* Taxonomy Icons - Display taxonomy terms with icons
+* Park Maps - Upload and display downloadable park maps with labels (PDF or image)
 
 == Installation ==
 
@@ -58,6 +60,11 @@ Yes, the plugin uses Secure Custom Fields (SCF) for additional metadata. You can
 Create a page and use the Park Flip Card block to display parks. Add the Park Search Filter and Park Taxonomy Filter blocks to enable filtering.
 
 == Changelog ==
+
+= 0.12.0 =
+* Added Park Maps block for displaying downloadable park maps (campground, trail, cabin, etc.)
+* Added "Maps" tab to Park Configuration with a repeater field for label + file upload pairs
+* Park flip cards now append a `#section` hash to park page links when a `?section=` query param is present, enabling deep-linking to any anchored section (e.g. `?section=park-maps` from a QR code)
 
 = 0.11.3 =
 * Updated advisories and operational dates to use WYSIWYG for description and details. 
